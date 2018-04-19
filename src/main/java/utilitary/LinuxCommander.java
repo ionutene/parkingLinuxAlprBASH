@@ -92,7 +92,6 @@ public class LinuxCommander{
 		}
 
 		public boolean promptYesNo(String str) {
-			str = "Yes";
 			return true;
 		}
 

@@ -35,7 +35,10 @@ public class MainCore implements Runnable {
 
 		System.out.println("Enter y to continue / others to stop");
 		while (sc.next().equals("y")){
+			logger.info("Start processing");
 			Process.process();
+			logger.info("Another shot");
+			System.out.println("Enter y to continue / others to stop");
 		}
 
 		sc.close();

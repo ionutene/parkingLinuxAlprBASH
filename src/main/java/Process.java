@@ -43,8 +43,9 @@ public class Process {
 					if (!interogatePlate.equals("NONE")) {
 
 						logger.info("found plate and opening barrier");
-
-						Utils.processFrame( interogatePlate, true);
+						RunnableMaintenance runnableMaintenance = new RunnableMaintenance(interogatePlate, true);
+						runnableMaintenance.start();
+//						Utils.processFrame( interogatePlate, true);
 							return;
 
 
