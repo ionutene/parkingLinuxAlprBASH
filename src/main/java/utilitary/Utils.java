@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 public class Utils {
 	private static Logger logger = LogManager.getLogger(Utils.class);
 
+
 	public static void processFrame(String path, boolean valid) {
 		LocalDateTime today = LocalDateTime.now();
 		DateTimeFormatter formatToday = DateTimeFormatter.ofPattern("MM_dd_yy_HH;mm");
@@ -27,10 +28,10 @@ public class Utils {
 		String pathFileName = today.format(formatToday) + path + ".jpg";
 		try {
 			//video horror
-
-			String LINK = "http://10.23.14.72:5050/video.mpjpeg";
-			FFmpegFrameGrabber frameGrabber = new FFmpegFrameGrabber(LINK);
-			logger.info("getting frame from: " + LINK);
+			String link = Variables.getStreamLink();
+			//			String LINK = "http://10.23.14.72:5050/video.mpjpeg";
+			FFmpegFrameGrabber frameGrabber = new FFmpegFrameGrabber(link);
+			logger.info("getting frame from: " + link);
 
 			frameGrabber.start();
 

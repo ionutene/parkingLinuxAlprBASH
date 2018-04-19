@@ -3,6 +3,7 @@ import org.apache.logging.log4j.Logger;
 import utilitary.DBrequest;
 import utilitary.LinuxCommander;
 import utilitary.Utils;
+import utilitary.Variables;
 
 import java.util.List;
 
@@ -20,10 +21,11 @@ public class Process {
 		float maxConfidence = 0;
 		String winningPlate;
 		try {
-			String command = "alpr -c eu -n 5 http://10.23.14.72:5050/video.mpjpeg";
+			logger.debug("Process started");
+			String command = "alpr -c eu -n "+ Variables.getPlatesForResult() + " " + Variables.getStreamLink();
 			//	String command ="ls";
 			List<String> plateCandidates = LinuxCommander.requestPlates(command);
-			if (plateCandidates != null) {
+			if (!plateCandidates.isEmpty()) {
 				for (String plateResult : plateCandidates) {
 
 					float confidence =
@@ -38,7 +40,7 @@ public class Process {
 					String interogatePlate = DBrequest.existsInDB(plateRegion, plateNo, plateLetters);
 					logger.debug("Got interogatePlate : " + interogatePlate);
 
-					if (interogatePlate != null) {
+					if (!interogatePlate.equals("NONE")) {
 
 						logger.info("found plate and opening barrier");
 

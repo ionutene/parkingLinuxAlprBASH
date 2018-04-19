@@ -4,10 +4,16 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
+
+        <File name="MyFile" fileName="logs/parking.log">
+            <PatternLayout pattern="%d{yyyy-mm-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+
     </Appenders>
     <Loggers>
         <Root level="DEBUG">
-            <AppenderRef ref="Console"/>
+            <appender-ref ref="Console" level="info"/>
+            <appender-ref ref="MyFile" level="debug"/>
         </Root>
     </Loggers>
 </Configuration>

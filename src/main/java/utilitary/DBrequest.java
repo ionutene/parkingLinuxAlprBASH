@@ -43,7 +43,7 @@ public class DBrequest {
 
 				if (!rs.next() ) {
 					logger.debug("plate not found in DB");
-					return null;
+					return "NONE";
 				}else{
 					//	rs.next();
 					return rs.getString("result");

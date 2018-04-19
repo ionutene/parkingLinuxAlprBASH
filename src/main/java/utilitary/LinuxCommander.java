@@ -8,37 +8,21 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 
-public class LinuxCommander {
+public class LinuxCommander{
 
 	private static Logger logger = LogManager.getLogger(LinuxCommander.class);
-
-	private static String HOST;
-	private static String PORT;
-	private static String USER;
-	private static String PASSWORD;
-
 
 	public static List<String>  requestPlates(String command) {
 		try {
 
 			List<String> result = new ArrayList<>();
 
-			Map<String, String> hMap = JsonDeserialize.deserialize("Linux");
-			HOST = hMap.get("LinuxHost");
-			PORT = hMap.get("LinuxPort");
-			USER = hMap.get("LinuxUser");
-			PASSWORD = hMap.get("LinuxPassword");
-
 			JSch jsch = new JSch();
 
-			String user = HOST.substring(0, HOST.indexOf('@'));
-			HOST = HOST.substring(HOST.indexOf('@') + 1);
-
-			Session session = jsch.getSession(user, HOST, Integer.parseInt(PORT));
+			Session session = jsch.getSession(Variables.getLinuxUser(), Variables.getLinuxHost(), Variables.getLinuxPort());
 
 			// username and password will be given via UserInfo interface.
 			UserInfo ui = new MyUserInfo();
@@ -68,10 +52,10 @@ public class LinuxCommander {
 					if (i < 0)
 						break;
 					String tempValue = new String(tmp, 0, i);
-					logger.debug(tempValue);
+						logger.debug(tempValue);
 					result.add(tempValue);
 					start++;
-					logger.debug(start);
+						logger.debug(start);
 				}
 				if (channel.isClosed()) {
 					logger.info("exit-status: " + channel.getExitStatus());
@@ -99,12 +83,12 @@ public class LinuxCommander {
 			e.printStackTrace();
 			logger.error(e);
 		}
-		return null;
+		return new ArrayList<>();
 	}
 
 	public static class MyUserInfo implements UserInfo {
 		public String getPassword() {
-			return PASSWORD;
+			return Variables.getLinuxPassword();
 		}
 
 		public boolean promptYesNo(String str) {
