@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.boofcv:boofcv-geo:0.29">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../repositoryMaven/study/org/boofcv/boofcv-geo/0.29/boofcv-geo-0.29.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../repositoryMaven/study/org/boofcv/boofcv-geo/0.29/boofcv-geo-0.29-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../repositoryMaven/study/org/boofcv/boofcv-geo/0.29/boofcv-geo-0.29-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

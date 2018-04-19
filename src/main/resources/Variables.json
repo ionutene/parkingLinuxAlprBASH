@@ -1,0 +1,22 @@
+{
+  "Variables": {
+    "Linux": {
+      "LinuxHost": "parking@10.23.14.72",
+      "LinuxPort": "22",
+      "LinuxUser": "parking",
+      "LinuxPassword": "root"
+    },
+    "MySQL": {
+      "MySQLHost": "10.23.13.235",
+      "MySQLDatabase": "test",
+      "MySQLUser": "adrian",
+      "MySQLPassword": "Abcdefg1"
+    },
+    "Alpr": {
+
+    },
+    "Folders": {
+
+    }
+  }
+}
