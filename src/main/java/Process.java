@@ -2,7 +2,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utilitary.DBrequest;
 import utilitary.LinuxCommander;
-import utilitary.Utils;
 import utilitary.Variables;
 
 import java.util.List;
@@ -43,6 +42,7 @@ public class Process {
 					if (!interogatePlate.equals("NONE")) {
 
 						logger.info("found plate and opening barrier");
+						openBarrier();
 						RunnableMaintenance runnableMaintenance = new RunnableMaintenance(interogatePlate, true);
 						runnableMaintenance.start();
 //						Utils.processFrame( interogatePlate, true);
@@ -124,5 +124,10 @@ public class Process {
 			plateLetters = plate.substring(0, 3).toUpperCase();
 		} else
 			plateLetters = "";
+	}
+
+	public static void openBarrier(){
+		String command = "ssh pi@192.168.0.100 /home/pi/project/bariera_on_off.sh";
+		LinuxCommander.requestPlates(command);
 	}
 }

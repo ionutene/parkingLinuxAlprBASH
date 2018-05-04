@@ -10,6 +10,8 @@ public class Variables {
 	private static String linuxPassword;
 	private static String linuxUser;
 	private static int platesForResult;
+	private static String raspberryUser;
+	private static String raspberryPassword;
 
 	private Variables(VariablesBuilder builder) {
 		this.temporaryPath = builder.getTemporaryPath();
@@ -19,6 +21,8 @@ public class Variables {
 		this.linuxPassword = builder.getLinuxPassword();
 		this.linuxUser = builder.getLinuxUser();
 		this.platesForResult = builder.getPlatesForResult();
+		this.raspberryUser = builder.getRaspberryUser();
+		this.raspberryPassword = builder.raspberryPassword;
 	}
 
 	public static String getTemporaryPath() {
@@ -57,6 +61,8 @@ public class Variables {
 		private String linuxPassword;
 		private String linuxUser;
 		private int platesForResult;
+		private String raspberryUser;
+		private String raspberryPassword;
 
 		public VariablesBuilder() {
 		}
@@ -100,6 +106,16 @@ public class Variables {
 			return this;
 		}
 
+		public VariablesBuilder raspberryUser(String raspberryUser) {
+			this.raspberryUser = raspberryUser;
+			return this;
+		}
+
+		public VariablesBuilder raspberryPassword(String raspberryPassword) {
+			this.raspberryPassword = raspberryPassword;
+			return this;
+		}
+
 
 		String getTemporaryPath() {
 			return temporaryPath;
@@ -125,9 +141,18 @@ public class Variables {
 			return linuxUser;
 		}
 
+		String getRaspberryUser() {
+			return raspberryUser;
+		}
+
+		String getRaspberryPassword() {
+			return raspberryPassword;
+		}
+
 		int getPlatesForResult() {
 			return platesForResult;
 		}
+
 
 		@Override
 		public String toString() {

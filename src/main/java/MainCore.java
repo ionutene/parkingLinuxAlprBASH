@@ -26,8 +26,11 @@ public class MainCore implements Runnable {
 				.linuxPassword(hMap.get("LinuxPassword"))
 				.linuxUser(hMap.get("LinuxUser"))
 				.linuxPort(Integer.parseInt(hMap.get("LinuxPort")))
+				.raspberryUser(hMap.get("RaspberryUser"))
+				.raspberryPassword(hMap.get("RaspberryPassword"))
 				.streamLink(hMap.get("StreamLink"))
 				.platesForResult(Integer.parseInt(hMap.get("PlatesForResult")))
+
 				.build();
 
 		logger.debug(builder.toString());
@@ -40,6 +43,12 @@ public class MainCore implements Runnable {
 			logger.info("Another shot");
 			System.out.println("Enter y to continue / others to stop");
 		}
+
+		/*while (sc.next().equals("y")){
+			logger.info("open barrier");
+			Process.openBarrier();
+
+		}*/
 
 		sc.close();
 
