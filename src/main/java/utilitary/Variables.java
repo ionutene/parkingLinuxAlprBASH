@@ -12,6 +12,8 @@ public class Variables {
 	private static int platesForResult;
 	private static String raspberryUser;
 	private static String raspberryPassword;
+	private static String raspberryHost;
+	private static int raspberryPort;
 
 	private Variables(VariablesBuilder builder) {
 		this.temporaryPath = builder.getTemporaryPath();
@@ -22,11 +24,26 @@ public class Variables {
 		this.linuxUser = builder.getLinuxUser();
 		this.platesForResult = builder.getPlatesForResult();
 		this.raspberryUser = builder.getRaspberryUser();
-		this.raspberryPassword = builder.raspberryPassword;
+		this.raspberryPassword = builder.getRaspberryPassword();
+		this.raspberryHost = builder.getRaspberryHost();
+		this.raspberryPort = builder.getRaspberryPort();
+
 	}
 
-	public static String getTemporaryPath() {
-		return temporaryPath;
+	public static String getRaspberryHost() {
+		return raspberryHost;
+	}
+
+	public static int getRaspberryPort() {
+		return raspberryPort;
+	}
+
+	public static String getRaspberryUser() {
+		return raspberryUser;
+	}
+
+	public static String getRaspberryPassword() {
+		return raspberryPassword;
 	}
 
 	public static String getStreamLink() {
@@ -63,6 +80,9 @@ public class Variables {
 		private int platesForResult;
 		private String raspberryUser;
 		private String raspberryPassword;
+		private String raspberryHost;
+		private int raspberryPort;
+
 
 		public VariablesBuilder() {
 		}
@@ -116,6 +136,23 @@ public class Variables {
 			return this;
 		}
 
+		public VariablesBuilder raspberryHost(String raspberryHost) {
+			this.raspberryHost = raspberryHost;
+			return this;
+		}
+
+		public VariablesBuilder raspberryPort(int raspberryPort) {
+			this.raspberryPort = raspberryPort;
+			return this;
+		}
+
+		int getRaspberryPort() {
+			return raspberryPort;
+		}
+
+		String getRaspberryHost() {
+			return raspberryHost;
+		}
 
 		String getTemporaryPath() {
 			return temporaryPath;

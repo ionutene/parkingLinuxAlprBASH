@@ -2,17 +2,18 @@
   "Variables": {
     "Linux": {
       "TemporaryPath" : "src/main/staging/",
-      "StreamLink": "http://192.168.0.100:5050/video.mpjpeg",
+      "StreamLink": "http://192.168.0.101:5050/video.mpjpeg",
 
       "LinuxUser": "parking",
       "LinuxHost": "192.168.0.101",
       "LinuxPort": "22",
+      "LinuxPassword": "root",
 
       "RaspberryUser": "pi",
       "RaspberryHost": "192.168.0.100",
       "RaspberryPort": "22",
+      "RaspberryPassword": "proiect777",
 
-      "LinuxPassword": "root",
       "PlatesForResult": "5"
     }
   }

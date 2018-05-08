@@ -15,7 +15,7 @@ public class MainCore implements Runnable {
 	}
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Map<String, String> hMap = JsonDeserialize.deserialize("Linux");
 
 
@@ -28,6 +28,8 @@ public class MainCore implements Runnable {
 				.linuxPort(Integer.parseInt(hMap.get("LinuxPort")))
 				.raspberryUser(hMap.get("RaspberryUser"))
 				.raspberryPassword(hMap.get("RaspberryPassword"))
+				.raspberryHost(hMap.get("RaspberryHost"))
+				.raspberryPort(Integer.parseInt(hMap.get("RaspberryPort")))
 				.streamLink(hMap.get("StreamLink"))
 				.platesForResult(Integer.parseInt(hMap.get("PlatesForResult")))
 
@@ -36,12 +38,21 @@ public class MainCore implements Runnable {
 		logger.debug(builder.toString());
 		Scanner sc=new Scanner(System.in);
 
-		System.out.println("Enter y to continue / others to stop");
-		while (sc.next().equals("y")){
-			logger.info("Start processing");
-			Process.process();
-			logger.info("Another shot");
+		Process.openBarrier();
+
+		/*String videoStream = "cvlc -vvv v4l2:// --sout '#transcode{vcodec=mjpg, vb=2000, width=320,height=240,venc=ffmpeg}:duplicate{dist=standard {access=http,mux=mpjpeg,dst=192.168.0.100:5050/video.mpjpeg}'";
+		logger.debug("Starting stream at:" + Variables.getStreamLink());
+		Process.startStreaming(videoStream);*/
+
+
+	//	System.out.println(DBrequest.existsInDB("B","888","BBB"));
+
 			System.out.println("Enter y to continue / others to stop");
+		while (/*sc.next().equals("y")*/true){
+			logger.debug("Start processing");
+			Process.process();
+			logger.debug("Another shot");
+			//System.out.println("Enter y to continue / others to stop");
 		}
 
 		/*while (sc.next().equals("y")){
@@ -50,7 +61,7 @@ public class MainCore implements Runnable {
 
 		}*/
 
-		sc.close();
+		//sc.close();
 
 
 

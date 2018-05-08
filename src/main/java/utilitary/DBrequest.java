@@ -1,11 +1,15 @@
 package utilitary;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 
@@ -28,18 +32,23 @@ public class DBrequest {
 			props.load(in);
 			in.close();
 
-			String driver = props.getProperty("jdbc.driver");
+			/*String driver = props.getProperty("jdbc.driver");
 			if (driver != null) {
-				Class.forName("com.mysql.jdbc.Driver");
-			}
+				Class.forName("com.mysql.cj.jdbc.Drive");
+			}*/
 
-			try (Connection conn = DriverManager
-					.getConnection(props.getProperty("jdbc.url"), props.getProperty("jdbc.username"),
-							props.getProperty("jdbc.password")); Statement stmt = conn.createStatement()) {
+			MysqlDataSource dataSource = new MysqlDataSource();
+			dataSource.setUser("root");
+			dataSource.setPassword("root");
+			dataSource.setServerName("192.168.0.101");
+			dataSource.setPort(3306);
+			dataSource.setDatabaseName("parkingDB");
+
+			try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
 
 				ResultSet rs = stmt.executeQuery(
-						"SELECT CONCAT('_',plate_region,'_',plate_no,'_',plate_letters) AS result FROM test.plate  WHERE plate_region LIKE '" + plateRegion
-								+ "%' AND plate_no LIKE '%" + plateNo + "' AND plate_letters='" + plateLetters + "';");
+						"SELECT CONCAT('_',plate_reg,'_',plate_no,'_',plate_chr) AS result FROM parkingDB.plate  WHERE plate_reg LIKE '" + plateRegion
+								+ "%' AND plate_no LIKE '%" + plateNo + "' AND plate_chr='" + plateLetters + "';");
 
 				if (!rs.next() ) {
 					logger.debug("plate not found in DB");
@@ -50,6 +59,7 @@ public class DBrequest {
 				}
 
 			} catch (Exception e) {
+
 				e.printStackTrace();
 				logger.error("Error in DB initial ", e.getMessage());
 

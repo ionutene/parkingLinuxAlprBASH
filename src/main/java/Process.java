@@ -46,6 +46,8 @@ public class Process {
 						RunnableMaintenance runnableMaintenance = new RunnableMaintenance(interogatePlate, true);
 						runnableMaintenance.start();
 //						Utils.processFrame( interogatePlate, true);
+
+						logger.info("");
 							return;
 
 
@@ -61,12 +63,12 @@ public class Process {
 				}
 			//	Utils.processFrame(winningPlate,false);
 				if (plateCandidates.size() == 0) {
-					logger.info("No plate detected!");
+					logger.debug("No plate detected!");
 				}
 
 
 			} else {
-				logger.info("No plate detected");
+				logger.debug("No plate detected");
 			}
 		} catch (Exception e) {
 			logger.error(e);
